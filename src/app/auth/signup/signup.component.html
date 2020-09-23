@@ -1,0 +1,78 @@
+<mat-grid-list cols="5">
+    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2">
+        <mat-card>
+            <form (ngSubmit)="onSignup(signupForm)" #signupForm="ngForm">
+                <mat-card-title>Inscription</mat-card-title>
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>Nom</mat-label>
+                                <input matInput type="text" name="lastname" [formControl]="form.controls.lastNameFormControl">
+                                <mat-error *ngIf="form.controls.lastNameFormControl.hasError('required') || form.controls.lastNameFormControl.hasError('whitespace')">
+                                    Le champ nom est requis
+                                </mat-error>
+                              </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>Prenom</mat-label>
+                                <input matInput name="firstname" type="text" [formControl]="form.controls.firstNameFormControl">
+                                <mat-error *ngIf="form.controls.firstNameFormControl.hasError('required') || form.controls.firstNameFormControl.hasError('whitespace')">
+                                    Le champ prénom est requis
+                                </mat-error>
+                              </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input matInput name="email" type="email" [formControl]="form.controls.emailFormControl">
+                                <mat-error *ngIf="form.controls.emailFormControl.hasError('email')">L'email n'est pas valide</mat-error>
+                                <mat-error *ngIf="form.controls.emailFormControl.hasError('required') || form.controls.emailFormControl.hasError('whitespace')">
+                                    Le champ email est requis
+                                </mat-error>
+                              </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>Mot de passe</mat-label>
+                                <input type="password" name="password" [formControl]="form.controls.passwordFormControl" matInput>
+                                <mat-error *ngIf="form.controls.passwordFormControl.hasError('required') || form.controls.passwordFormControl.hasError('whitespace')">
+                                    Le champ mot de passe est requis
+                                </mat-error>
+                                <mat-error *ngIf="form.controls.passwordConfirmFormControl.hasError('ConfirmPassword')"></mat-error>
+                              </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>Confirmer le mot de passe</mat-label>
+                                <input type="password" name="password"  matInput [formControl]="form.controls.passwordConfirmFormControl">
+                                <mat-error *ngIf="form.controls.passwordConfirmFormControl.hasError('ConfirmPassword')">Les mot de passe ne correspondent pas</mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>Licence</mat-label>
+                                <input matInput name="licence" ngModel #licenceInput="ngModel" type="text">
+                                <mat-error *ngIf="licenceInput.invalid"></mat-error>
+                              </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+              <button mat-raised-button color="accent" type="submit">S'inscrire</button>
+            </form>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+</mat-grid-list>
