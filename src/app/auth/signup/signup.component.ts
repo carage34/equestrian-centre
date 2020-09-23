@@ -23,7 +23,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(signupForm: NgForm) {
-
+    if(this.form.invalid) {
+      console.log("invalid");
+    } else {
+      console.log("valid");
+    }
   }
   noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
