@@ -14,6 +14,10 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+user = require("./routes/user.route");
+
+app.use('/api/user', user);
+
 app.get("/", function(req, res) {
     res.json("Api status: Ok");
 })
