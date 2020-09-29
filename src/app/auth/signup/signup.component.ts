@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroupDirective, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: 'app-signup',
@@ -14,10 +15,11 @@ export class SignupComponent implements OnInit {
     firstNameFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     emailFormControl: new FormControl('', [Validators.required, Validators.email, this.noWhitespaceValidator]),
     passwordFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
-    passwordConfirmFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator, this.passwordMatchValidator])
+    passwordConfirmFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator, this.passwordMatchValidator]),
+    licence: new FormControl('', [Validators.required, this.noWhitespaceValidator])
   })
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +28,14 @@ export class SignupComponent implements OnInit {
     if(this.form.invalid) {
       console.log("invalid");
     } else {
-      console.log("valid");
+      console.log(this.form.value.firstNameFormControl);
+      this.authService.createUser(
+        this.form.value.firstNameFormControl,
+        this.form.value.lastNameFormControl,
+        this.form.value.emailFormControl,
+        this.form.value.passwordFormControl,
+        this.form.value.licence
+      )
     }
   }
   noWhitespaceValidator(control: FormControl) {

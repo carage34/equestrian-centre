@@ -64,12 +64,11 @@
                         <td>
                             <mat-form-field>
                                 <mat-label>Licence</mat-label>
-                                <input matInput name="licence" ngModel #licenceInput="ngModel" type="text">
-                                <mat-error *ngIf="licenceInput.invalid"></mat-error>
-                              </mat-form-field>
+                                <input matInput name="licence" type="text"  [formControl]="form.controls.licence">
+                                <mat-error *ngIf="form.controls.licence.hasError('required') || form.controls.licence.hasError('whitespace')"></mat-error>
+                            </mat-form-field>
                         </td>
                     </tr>
-                    {{ form.invalid }}
                 </table>
               <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid">S'inscrire</button>
             </form>
