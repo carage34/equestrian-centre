@@ -2,25 +2,31 @@
     <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="2">
         <mat-card>
-            <form>
+            <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
                 <mat-card-title>Se connecter</mat-card-title>
                 <table>
                     <tr>
                         <td>
                             <mat-form-field>
-                                <input matInput name="email"  type="email" placeholder="E-Mail" required email>
+                                <input matInput name="email"  type="email" placeholder="E-Mail" [formControl]="form.controls.emailFormControl">
+                                <mat-error *ngIf="form.controls.emailFormControl.hasError('required') || form.controls.emailFormControl.hasError('whitespace')">
+                                    Le champ email est requis
+                                </mat-error>
                               </mat-form-field>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <mat-form-field>
-                                <input type="password" name="password"  matInput placeholder="Password" required>
-                              </mat-form-field>
+                                <input type="password" name="password"  matInput placeholder="Mot de passe" [formControl]="form.controls.passwordFormControl">
+                                <mat-error *ngIf="form.controls.passwordFormControl.hasError('required') || form.controls.passwordFormControl.hasError('whitespace')">
+                                    Le champ mot de passe est requis
+                                </mat-error>
+                            </mat-form-field>
                         </td>
                     </tr>
                 </table>
-              <button mat-raised-button color="accent" type="submit">Connexion</button>
+              <button mat-raised-button color="accent" [disabled]="form.invalid" type="submit">Connexion</button>
             </form>
         </mat-card>
     </mat-grid-tile>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroupDirective, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { AlertDialogComponent, DialogData } from 'src/app/alert-dialog/alert-dialog.component';
 import { AuthService } from "../auth.service";
 
 @Component({
@@ -19,12 +22,13 @@ export class SignupComponent implements OnInit {
     licence: new FormControl('', [Validators.required, this.noWhitespaceValidator])
   })
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, public dialog: MatDialog, public router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSignup(signupForm: NgForm) {
+    let self = this;
     if(this.form.invalid) {
       console.log("invalid");
     } else {
@@ -35,9 +39,18 @@ export class SignupComponent implements OnInit {
         this.form.value.emailFormControl,
         this.form.value.passwordFormControl,
         this.form.value.licence
-      )
+      ).subscribe(function(data: DialogData) {
+        console.log(data);
+        const dialogRef = self.dialog.open(AlertDialogComponent, {
+          data
+        })
+        if(data.success) {
+          dialogRef.afterClosed().subscribe(() => self.router.navigate(['/login']));
+        }
+      })
     }
   }
+  
   noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
