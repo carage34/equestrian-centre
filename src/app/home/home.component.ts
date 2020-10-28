@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { AuthService, UserDetails } from '../auth/auth.service';
+import { UserData } from '../auth/user-data.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +11,20 @@ import { HttpClient } from "@angular/common/http";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  user: UserDetails
+  isAuth: boolean
+
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.http
-      .get("http://localhost:8080/session", {withCredentials: true}).subscribe(data => console.log(data));
+    //this.isAuthenticated = this.authService.isAuth();
+    this.authService
+    .profile()
+    .subscribe(
+      user => {
+        this.user = user;
+      }
+    )
+    
   }
-
 }

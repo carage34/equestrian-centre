@@ -1,5 +1,7 @@
 const db = require("../models");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { UseExistingWebDriver } = require("protractor/built/driverProviders");
 const User = db.user;
 
 //Create and persist new user
@@ -28,15 +30,18 @@ exports.create = (req, res) => {
             lastname: req.body.lastname,
             email: req.body.email,
             password: hash,
-            licence: req.body.licence
+            license: req.body.licence
         }
 
         User.create(newUser)
-            .then(data => {
-                req.session.username = req.body.firstname;
-                res.send({
-                    success: true,
-                    title: "Compte créé",
+            .then(user => {
+                let token = jwt.sign(user.dataValues, "secret_key", {
+                    expiresIn: 1440
+                })
+                res.json({
+                    token: token,
+                    sucess: true,
+                    title: "Inscription",
                     message: "Compte créé avec succès"
                 });
             })
@@ -59,22 +64,49 @@ exports.login = (req, res) => {
     })
     .then(user => {
         if(bcrypt.compareSync(req.body.password, user.password)) {
-            res.json({
-                success: true,
-                message: "Authentification réussi",
-                user: user
+            let token = jwt.sign(user.dataValues, "secret_key", {
+                expiresIn: 1440
             })
+            res.json(
+                {
+                    token: token,
+                    success: true,
+                    title: "Authentification",
+                    message: "Authentification réussi",
+                }
+            )
         } else {
-            res.json({
+            res.send({
                 success: false,
+                title: "Authentification",
                 message: "Les identifiants ne correspondent pas"
             })
         }
     })
     .catch(err => {
-        res.json({
+        res.send({
             success: false,
             message: "Erreur de connexion avec la base de données"
         })
+    })
+}
+
+exports.info = (req, res) => {
+    var decoded = jwt.verify(req.headers['authorization'], 'secret_key');
+
+    User.findOne({
+        where: {
+            id: decoded.id
+        }
+    })
+    .then(user => {
+        if(user) {
+            res.json(user)
+        } else {
+            res.send("L'utilisateur n'existe pas")
+        }
+    })
+    .catch(err => {
+        res.send('Erreur avec la base de données');
     })
 }

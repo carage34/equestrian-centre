@@ -7,5 +7,6 @@ var router = express.Router();
 // Create user
 router.post("/", users.create);
 router.post("/login", users.login);
+router.get("/profile", users.info);
 
 module.exports = router

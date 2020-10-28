@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AlertDialogComponent, DialogData } from 'src/app/alert-dialog/alert-dialog.component';
+import { AlertDialogComponent } from 'src/app/alert-dialog/alert-dialog.component';
 import { AuthService } from '../auth.service';
+import { UserData } from '../user-data.model';
+import { DialogData } from '../dialog-data.model'
 
 @Component({
   selector: 'app-login',
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(function(data: DialogData) {
         if(data.success) {
+          localStorage.auth = true;
           self.router.navigate(['/']);
         } else {
           const dialogRef = self.dialog.open(AlertDialogComponent, {
@@ -48,5 +51,4 @@ export class LoginComponent implements OnInit {
       })
     }
   }
-
 }
