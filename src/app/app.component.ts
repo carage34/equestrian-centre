@@ -11,10 +11,6 @@ import { UserData } from './auth/user-data.model';
 export class AppComponent implements OnInit{
   title = 'equestrian-centre';
 
-  isAuthenticated = false;
-  private authStatusSub: Subscription;
-  private userStatusSub: Subscription;
-
   constructor(private authService: AuthService) { }
 
   isAuth: boolean;

@@ -28,6 +28,7 @@ interface TokenResponse {
 export class AuthService {
 
   private token: string;
+  isAuthSub = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -49,6 +50,7 @@ export class AuthService {
     if(token) {
       payload = token.split('.')[1];
       payload = window.atob(payload)
+      return JSON.parse(payload);
     } else {
       return null;
     }
@@ -72,8 +74,9 @@ export class AuthService {
 
     const request = post.pipe(
       map((data: TokenResponse) => {
+        console.log(data);
         if(data.token) {
-          this.saveToken(this.token);
+          this.saveToken(data.token);
         }
         return data;
       })
@@ -88,8 +91,10 @@ export class AuthService {
 
     const request = post.pipe(
       map((data: TokenResponse) => {
+        console.log("test");
+        console.log(data.token);
         if(data.token) {
-          this.saveToken(this.token);
+          this.saveToken(data.token);
         }
         return data;
       })

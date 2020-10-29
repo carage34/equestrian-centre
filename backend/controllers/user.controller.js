@@ -92,6 +92,8 @@ exports.login = (req, res) => {
 }
 
 exports.info = (req, res) => {
+    console.log("AAAAAAAAAAAAAAAAAA ");
+    console.log(req.headers);
     var decoded = jwt.verify(req.headers['authorization'], 'secret_key');
 
     User.findOne({
