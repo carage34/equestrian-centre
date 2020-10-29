@@ -28,9 +28,14 @@ interface TokenResponse {
 export class AuthService {
 
   private token: string;
+  isLoggedIn = false;
   isAuthSub = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
+
+  getIsAuth() : Observable<boolean> {
+    return this.isAuthSub.asObservable();
+  }
 
   private saveToken(token: string) : void {
     localStorage.setItem('userToken', token)
@@ -59,8 +64,14 @@ export class AuthService {
   public isAuth(): boolean {
     const user = this.getUserDetail()
     if(user) {
-      return user.exp > Date.now() / 1000;
+      if(user.exp > Date.now() / 1000) {
+        this.isLoggedIn = true;
+        this.isAuthSub.next(true);
+        return true;
+      }
     } else {
+      this.isLoggedIn = false;
+      this.isAuthSub.next(false);
       return false;
     }
   }
@@ -78,6 +89,8 @@ export class AuthService {
         if(data.token) {
           this.saveToken(data.token);
         }
+        this.isLoggedIn = true;
+        this.isAuthSub.next(true);
         return data;
       })
     )
@@ -96,6 +109,8 @@ export class AuthService {
         if(data.token) {
           this.saveToken(data.token);
         }
+        this.isLoggedIn = true;
+        this.isAuthSub.next(true);
         return data;
       })
     )
@@ -105,6 +120,10 @@ export class AuthService {
     return this.http.get("http://localhost:8080/api/user/profile", {
       headers: {Authorization: `${this.getToken()}`}
     });
+  }
+
+  setLoggedIn(isLogged: boolean) {
+
   }
 
   public logout(): void {

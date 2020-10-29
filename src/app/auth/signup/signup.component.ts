@@ -46,6 +46,7 @@ export class SignupComponent implements OnInit {
           data
         })
         if(data.success) {
+          self.authService.setLoggedIn(true);
           dialogRef.afterClosed().subscribe(() => self.router.navigate(['/login']));
         }
       })

@@ -11,11 +11,17 @@ import { UserData } from './auth/user-data.model';
 export class AppComponent implements OnInit{
   title = 'equestrian-centre';
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   isAuth: boolean;
+  subscription: Subscription;
   
   ngOnInit(): void {
+    this.subscription = this.authService
+    .getIsAuth()
+    .subscribe(isAuth => {
+      this.isAuth = isAuth;
+    })
     this.isAuth = this.authService.isAuth();
   }
 }
