@@ -18,9 +18,10 @@ export class SignupComponent implements OnInit {
     lastNameFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     firstNameFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     emailFormControl: new FormControl('', [Validators.required, Validators.email, this.noWhitespaceValidator]),
+    telephoneFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     passwordFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     passwordConfirmFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator, this.passwordMatchValidator]),
-    licence: new FormControl('', [Validators.required, this.noWhitespaceValidator])
+    licence: new FormControl('')
   })
 
   constructor(public authService: AuthService, public dialog: MatDialog, public router: Router) { }
@@ -38,6 +39,7 @@ export class SignupComponent implements OnInit {
         this.form.value.firstNameFormControl,
         this.form.value.lastNameFormControl,
         this.form.value.emailFormControl,
+        this.form.value.telephoneFormControl,
         this.form.value.passwordFormControl,
         this.form.value.licence
       ).subscribe(function(data: DialogData) {
@@ -46,8 +48,8 @@ export class SignupComponent implements OnInit {
           data
         })
         if(data.success) {
-          self.authService.setLoggedIn(true);
-          dialogRef.afterClosed().subscribe(() => self.router.navigate(['/login']));
+          console.log("test");
+          dialogRef.afterClosed().subscribe(() => self.router.navigate(['/']));
         }
       })
     }

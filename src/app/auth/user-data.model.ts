@@ -1,7 +1,8 @@
 export interface UserData {
     firstname: string;
     lastname: string;
-    email: string
-    password: string
-    licence: string
+    email: string;
+    telephone: string;
+    password: string;
+    licence: string;
 }

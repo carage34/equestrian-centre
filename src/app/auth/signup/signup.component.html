@@ -42,6 +42,17 @@
                     <tr>
                         <td>
                             <mat-form-field>
+                                <mat-label>Téléphone</mat-label>
+                                <input matInput name="telephone" type="tel" [formControl]="form.controls.telephoneFormControl">
+                                <mat-error *ngIf="form.controls.telephoneFormControl.hasError('required') || form.controls.emailFormControl.hasError('whitespace')">
+                                    Le champ téléphone est requis
+                                </mat-error>
+                              </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
                                 <mat-label>Mot de passe</mat-label>
                                 <input type="password" name="password" [formControl]="form.controls.passwordFormControl" matInput>
                                 <mat-error *ngIf="form.controls.passwordFormControl.hasError('required') || form.controls.passwordFormControl.hasError('whitespace')">
@@ -65,7 +76,6 @@
                             <mat-form-field>
                                 <mat-label>Licence</mat-label>
                                 <input matInput name="licence" type="text"  [formControl]="form.controls.licence">
-                                <mat-error *ngIf="form.controls.licence.hasError('required') || form.controls.licence.hasError('whitespace')"></mat-error>
                             </mat-form-field>
                         </td>
                     </tr>

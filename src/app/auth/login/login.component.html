@@ -8,9 +8,9 @@
                     <tr>
                         <td>
                             <mat-form-field>
-                                <input matInput name="email"  type="email" placeholder="E-Mail" [formControl]="form.controls.emailFormControl">
+                                <input matInput name="email"  type="email" placeholder="E-Mail ou Téléphone" [formControl]="form.controls.emailFormControl">
                                 <mat-error *ngIf="form.controls.emailFormControl.hasError('required') || form.controls.emailFormControl.hasError('whitespace')">
-                                    Le champ email est requis
+                                    Le champ email ou téléphone est requis
                                 </mat-error>
                               </mat-form-field>
                         </td>

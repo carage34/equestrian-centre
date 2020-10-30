@@ -13,6 +13,7 @@ export interface UserDetails {
   lastname: string
   email: string
   licence: string
+  telephone:string
   password: string
   exp: number
   iat: number
@@ -76,10 +77,10 @@ export class AuthService {
     }
   }
 
-  createUser(firstname: string, lastname: string, email: string, password: string, licence: string) : Observable<any> {
+  createUser(firstname: string, lastname: string, email: string, telephone:string, password: string, licence: string) : Observable<any> {
     let newLicence = null;
     if(licence) newLicence = licence;
-    const signUpData: UserData = {firstname: firstname, lastname: lastname, email: email, password: password, licence: newLicence };
+    const signUpData: UserData = {firstname: firstname, lastname: lastname, email: email, telephone: telephone, password: password, licence: newLicence };
     const post = this.http
       .post("http://localhost:8080/api/user", signUpData, {withCredentials: true});
 
@@ -111,6 +112,7 @@ export class AuthService {
         }
         this.isLoggedIn = true;
         this.isAuthSub.next(true);
+        
         return data;
       })
     )
@@ -122,13 +124,11 @@ export class AuthService {
     });
   }
 
-  setLoggedIn(isLogged: boolean) {
-
-  }
-
   public logout(): void {
     this.token = '';
     localStorage.removeItem('userToken');
-    this.router.navigate(['/']);
+    this.isLoggedIn = false;
+    this.isAuthSub.next(false);
+    this.router.navigate(['/login']);
   }
 }

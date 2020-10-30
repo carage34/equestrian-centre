@@ -1,7 +1,7 @@
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { UseExistingWebDriver } = require("protractor/built/driverProviders");
+const { Op } = require("sequelize");
 const User = db.user;
 
 //Create and persist new user
@@ -23,12 +23,29 @@ exports.create = (req, res) => {
             return;
         }
     })
+
+    User.findOne({
+        where: {
+            telephone: req.body.telephone
+        }
+    })
+    .then(user => {
+        if(user) {
+            res.json({
+                success: false,
+                title: "Erreur d'inscription",
+                message: "Cet numéro de téléphone est déjà associé à un utilisateur"
+            });
+            return;
+        }
+    })
     
     bcrypt.hash(req.body.password, 10).then(hash => {
         const newUser = {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
+            telephone: req.body.telephone,
             password: hash,
             license: req.body.licence
         }
@@ -40,7 +57,7 @@ exports.create = (req, res) => {
                 })
                 res.json({
                     token: token,
-                    sucess: true,
+                    success: true,
                     title: "Inscription",
                     message: "Compte créé avec succès"
                 });
@@ -59,7 +76,11 @@ exports.create = (req, res) => {
 exports.login = (req, res) => {
     User.findOne({
         where: {
-            email: req.body.email
+            [Op.or]: [
+                { email: req.body.email },
+                { telephone: req.body.email }
+            ]
+            
         }
     })
     .then(user => {
