@@ -3,6 +3,9 @@
     <span>Centre equestre SKEMA</span>
     <span class="example-spacer"></span>
     <a mat-button routerLink="/home">Accueil</a>
+    <a *ngIf="!isAuth" mat-button routerLink="/login">Se connecter</a>
+    <a *ngIf="!isAuth" mat-button routerLink="/signup">S'inscrire</a>
+    <a *ngIf="isAuth" (click)="authService.logout()" mat-button>Se deconnecter</a>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
