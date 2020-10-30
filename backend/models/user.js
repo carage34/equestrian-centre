@@ -27,6 +27,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         license: {
             type: DataTypes.STRING
+        },
+        roleId: {
+            type: DataTypes.INTEGER
         }
     });
     return User;

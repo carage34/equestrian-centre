@@ -18,6 +18,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { AuthGuard } from './auth/auth-guard.service';
+import { ManageAdminComponent } from './manage-admin/manage-admin.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthGuard } from './auth/auth-guard.service';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    ManageAdminComponent
   ],
   imports: [
     BrowserModule,

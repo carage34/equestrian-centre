@@ -16,5 +16,8 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.user = require('./user')(sequelize, Sequelize);
+db.role = require('./role')(sequelize, Sequelize);
+
+db.role.hasOne(db.role);
 
 module.exports = db;
