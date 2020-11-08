@@ -1,5 +1,4 @@
-import { title } from "process"
-import { UserData } from './user-data.model';
+import { UserData } from './auth/user-data.model';
 
 export interface DialogData {
     success: boolean;

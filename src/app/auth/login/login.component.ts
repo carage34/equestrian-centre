@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/alert-dialog/alert-dialog.component';
 import { AuthService } from '../auth.service';
 import { UserData } from '../user-data.model';
-import { DialogData } from '../dialog-data.model'
+import { DialogData } from '../../dialog-data.model'
 
 @Component({
   selector: 'app-login',

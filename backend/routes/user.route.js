@@ -8,5 +8,8 @@ var router = express.Router();
 router.post("/", users.create);
 router.post("/login", users.login);
 router.get("/profile", users.info);
+router.get("/getSuperAdmin", users.getSuperAdmin);
+router.get("/removeAdminAccess/:id", users.removeAdminAccess);
+router.get("/addAdminAccess/:id", users.addAdminAccess);
 
 module.exports = router

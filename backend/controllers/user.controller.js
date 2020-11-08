@@ -3,7 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
 const User = db.user;
-
+const Role = db.role;
+const SUPER_ADMIN = 2;
+const ADMIN = 1;
+const USER = 3;
 //Create and persist new user
 exports.create = (req, res) => {
     console.log(req.body);
@@ -74,6 +77,7 @@ exports.create = (req, res) => {
 }
 
 exports.login = (req, res) => {
+    console.log(req.body.password);
     User.findOne({
         where: {
             [Op.or]: [
@@ -84,6 +88,13 @@ exports.login = (req, res) => {
         }
     })
     .then(user => {
+        if(!user) {
+            res.send({
+                success: false,
+                title: "Authentification",
+                message: "Les identifiants ne correspondent pas"
+            })
+        }
         if(bcrypt.compareSync(req.body.password, user.password)) {
             let token = jwt.sign(user.dataValues, "secret_key", {
                 expiresIn: 1440
@@ -96,15 +107,10 @@ exports.login = (req, res) => {
                     message: "Authentification réussi",
                 }
             )
-        } else {
-            res.send({
-                success: false,
-                title: "Authentification",
-                message: "Les identifiants ne correspondent pas"
-            })
         }
     })
     .catch(err => {
+        console.log(err);
         res.send({
             success: false,
             message: "Erreur de connexion avec la base de données"
@@ -113,7 +119,6 @@ exports.login = (req, res) => {
 }
 
 exports.info = (req, res) => {
-    console.log("AAAAAAAAAAAAAAAAAA ");
     console.log(req.headers);
     var decoded = jwt.verify(req.headers['authorization'], 'secret_key');
 
@@ -131,5 +136,67 @@ exports.info = (req, res) => {
     })
     .catch(err => {
         res.send('Erreur avec la base de données');
+    })
+}
+
+exports.getSuperAdmin = (req, res) => {
+    User.findAll()
+    .then(users => {
+        res.json(users);
+    })
+    .catch(err => {
+        res.json({err: err});
+    })
+}
+
+exports.removeAdminAccess = (req, res) => {
+
+    let id = req.params.id;
+
+    User.update(
+        {roleId: USER},
+        {where: {id: id}}
+    )
+    .then(function(result) {
+        res.json({
+            success: true,
+            title: "Succès",
+            message: "Droits administrateur retirés avec succès"
+        });
+    })
+    .catch(function(result) {
+        res.json({
+            success: true,
+            title: "Erreur",
+            message: "Erreur du retrait des droits administrateur"
+        });
+    })
+}
+
+exports.addAdminAccess = (req, res) => {
+    let id = req.params.id;
+    User.findOne({
+        where: {
+            id: id
+        }
+    }).then(user => {
+        user.update({
+            role: ADMIN
+        })
+        .then(function(result){
+            res.json({
+                success: true,
+                title: "Succès",
+                message: "Droits administrateur ajouté avec succès"
+            });
+        })
+        .catch(function(result) {
+            console.log(result);
+            res.json({
+                success: true,
+                title: "Erreur",
+                message: "Erreur lors de l'ajout des droits administrateur"
+            });
+        })
     })
 }

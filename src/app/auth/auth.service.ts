@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 export interface UserDetails {
   id: number
-  firstnname: string
+  firstname: string
   lastname: string
   email: string
   licence: string

@@ -15,9 +15,10 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.user = require('./user')(sequelize, Sequelize);
-db.role = require('./role')(sequelize, Sequelize);
+db.user = require('./user.js')(sequelize, Sequelize);
+db.role = require('./role.js')(sequelize, Sequelize);
 
-db.role.hasOne(db.role);
+//db.user.hasOne(db.role, {foreignKey: 'id'});
+//db.role.belongsTo(db.user);
 
 module.exports = db;

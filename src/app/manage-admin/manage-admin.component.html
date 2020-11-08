@@ -1,1 +1,35 @@
-<p>manage-admin works!</p>
+
+    <div style="margin-top: 10%;">
+      <div class="center">
+        <h1>Liste des administrateurs</h1>
+      </div>
+      
+      <div class="center">
+        <table mat-table [dataSource]="superAdmins">
+
+          <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let superAdmin"> {{superAdmin.firstname}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let superAdmin"> {{superAdmin.lastname}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let superAdmin">
+              <button mat-raised-button (click)="popUpAlert( superAdmin.id, superAdmin.firstname, superAdmin.lastname, superAdmin.roleId)"><span *ngIf="superAdmin.roleId == 1">Désactiver</span><span *ngIf="superAdmin.roleId == 3">Activer</span></button>
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+        </table>
+      </div>
+    </div>
+
+
+  

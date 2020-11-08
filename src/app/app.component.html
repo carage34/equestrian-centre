@@ -6,6 +6,7 @@
     <a *ngIf="!isAuth" mat-button routerLink="/login">Se connecter</a>
     <a *ngIf="!isAuth" mat-button routerLink="/signup">S'inscrire</a>
     <a *ngIf="isAuth" (click)="authService.logout()" mat-button>Se deconnecter</a>
+    <a *ngIf="isAuth" mat-button routerLink="/list-admin">Liste des super admin</a>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

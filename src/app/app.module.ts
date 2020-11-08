@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table'  
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { ManageAdminComponent } from './manage-admin/manage-admin.component';
+import { ConfirmDialogAdminComponent } from './confirm-dialog-admin/confirm-dialog-admin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ManageAdminComponent } from './manage-admin/manage-admin.component';
     LoginComponent,
     SignupComponent,
     AlertDialogComponent,
-    ManageAdminComponent
+    ManageAdminComponent,
+    ConfirmDialogAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { ManageAdminComponent } from './manage-admin/manage-admin.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [AuthGuard, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
