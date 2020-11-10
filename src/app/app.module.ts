@@ -27,6 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { AddHorseComponent } from './add-horse/add-horse.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
     ManageAdminComponent,
     ConfirmDialogAdminComponent,
     DisplayUserComponent,
-    AddAccountComponent
+    AddAccountComponent,
+    AddHorseComponent
   ],
   imports: [
     BrowserModule,
