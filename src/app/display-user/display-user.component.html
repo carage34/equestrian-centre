@@ -1,0 +1,51 @@
+<ng-container>
+    <div style="margin-top: 10%;">
+        <div class="center">
+            <h1>Fiche de {{ user.firstname }} {{ user.lastname }}</h1>
+        </div>
+        <div class="center">
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Nom</mat-label>
+                            <input matInput [readonly]="true" type="text" name="lastname" [value]="user.lastname">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Prenom</mat-label>
+                            <input matInput name="firstname" [readonly]="true" type="text" [value]="user.firstname">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput name="email" [readonly]="true" type="email" [value]="user.email">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Téléphone</mat-label>
+                            <input matInput name="telephone" [readonly]="true" type="tel" [value]="user.telephone">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Licence</mat-label>
+                            <input matInput name="licence" [readonly]="true" type="text" [value]="user.licence">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-container>

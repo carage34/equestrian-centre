@@ -21,6 +21,9 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { ManageAdminComponent } from './manage-admin/manage-admin.component';
 import { ConfirmDialogAdminComponent } from './confirm-dialog-admin/confirm-dialog-admin.component';
+import { DisplayUserComponent } from './display-user/display-user.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { ConfirmDialogAdminComponent } from './confirm-dialog-admin/confirm-dial
     SignupComponent,
     AlertDialogComponent,
     ManageAdminComponent,
-    ConfirmDialogAdminComponent
+    ConfirmDialogAdminComponent,
+    DisplayUserComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,10 @@ import { ConfirmDialogAdminComponent } from './confirm-dialog-admin/confirm-dial
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+
   ],
   providers: [AuthGuard, ManageAdminComponent,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],

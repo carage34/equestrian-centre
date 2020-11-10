@@ -23,6 +23,8 @@ export class ManageAdminComponent implements OnInit {
   adminRole = environment.ADMIN;
   superAdminRole = environment.SUPER_ADMIN;
   userRole = environment.USER;
+  firstnameFilter: string;
+  lastnameFilter: string;
 
   constructor(private authService: AuthService, private usersService: UsersService, public dialog: MatDialog) { }
 
@@ -31,8 +33,37 @@ export class ManageAdminComponent implements OnInit {
     this.usersService
     .getAllSuperAdmin()
     .subscribe(function(user: UserData[]) {
+      let search = "a";
+      let test = user.filter(x => x.firstname.toLowerCase().includes(search.toLowerCase()));
+      console.log("test");
+      console.log(test);
       self.superAdmins = user;
       console.log(self.superAdmins);
+    })
+  }
+
+  firstNameFilterChanged() {
+    this.getFilteredData("firstname", this.firstnameFilter);
+  }
+
+  lastNameFilteredChanged() {
+    this.getFilteredData("lastname", this.lastnameFilter);
+  }
+
+  getFilteredData(filter: string, filterData: string) {
+    let self = this;
+    this.usersService
+    .getAllSuperAdmin()
+    .subscribe(function(user: UserData[]) {
+      let dataFiltered = user;
+      if(filter === "firstname") {
+        filterData = filterData.toLowerCase();
+        dataFiltered = dataFiltered.filter(x => x.firstname.toLowerCase().includes(filterData));
+        console.log(dataFiltered);
+      } else {
+        dataFiltered = user.filter(x => x.lastname.toLowerCase().includes(filterData));
+      }
+      self.superAdmins = dataFiltered;
     })
   }
 
@@ -62,8 +93,10 @@ export class ManageAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if(result === "remove") {
         this.confirmRemove(id);
-      } else {
+      } else if(result == "add") {
         this.confirmAdd(id);
+      } else {
+        dialogRef.close();
       }
     });
   }

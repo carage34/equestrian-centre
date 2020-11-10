@@ -50,6 +50,7 @@ exports.create = (req, res) => {
             email: req.body.email,
             telephone: req.body.telephone,
             password: hash,
+            roleId: 3,
             license: req.body.licence
         }
 
@@ -66,6 +67,7 @@ exports.create = (req, res) => {
                 });
             })
             .catch(err => {
+                console.log(err);
                 res.status(500).send({
                     success: false,
                     title: "Erreur inscription",
@@ -125,6 +127,27 @@ exports.info = (req, res) => {
     User.findOne({
         where: {
             id: decoded.id
+        }
+    })
+    .then(user => {
+        if(user) {
+            res.json(user)
+        } else {
+            res.send("L'utilisateur n'existe pas")
+        }
+    })
+    .catch(err => {
+        res.send('Erreur avec la base de données');
+    })
+}
+
+exports.infoById = (req, res) => {
+
+    let id = req.params.id;
+
+    User.findOne({
+        where: {
+            id: id
         }
     })
     .then(user => {

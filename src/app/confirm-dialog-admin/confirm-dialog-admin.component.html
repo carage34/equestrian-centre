@@ -3,5 +3,5 @@
 <mat-dialog-actions>
     <button *ngIf="data.action == 'remove'" mat-raised-button color="primary" mat-dialog-close tabindex="-1" [mat-dialog-close]="'remove'">Ok</button>
     <button *ngIf="data.action == 'add'" mat-raised-button color="primary" mat-dialog-close tabindex="-1" [mat-dialog-close]="'add'">Ok</button>
-    <button mat-raised-button color="primary" mat-dialog-close tabindex="-1" (click)="closeDialog()">Annuler</button>
+    <button mat-raised-button color="primary" mat-dialog-close tabindex="-1" (click)="closeDialog()" [mat-dialog-close]="'close'">Annuler</button>
 </mat-dialog-actions>

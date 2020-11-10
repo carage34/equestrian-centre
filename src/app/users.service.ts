@@ -20,4 +20,8 @@ export class UsersService {
   addAdminAcess(id: number) {
     return this.http.get(environment.API_BASE + "/user/addAdminAccess/"+id);
   }
+
+  getUserInfo(id: number) {
+    return this.http.get(environment.API_BASE + "/user/profile/"+id);
+  } 
 }
