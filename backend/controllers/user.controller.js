@@ -175,28 +175,23 @@ exports.removeAdminAccess = (req, res) => {
 
 exports.addAdminAccess = (req, res) => {
     let id = req.params.id;
-    User.findOne({
-        where: {
-            id: id
-        }
-    }).then(user => {
-        user.update({
-            role: ADMIN
-        })
-        .then(function(result){
-            res.json({
-                success: true,
-                title: "Succès",
-                message: "Droits administrateur ajouté avec succès"
-            });
-        })
-        .catch(function(result) {
-            console.log(result);
-            res.json({
-                success: true,
-                title: "Erreur",
-                message: "Erreur lors de l'ajout des droits administrateur"
-            });
-        })
+
+    User.update(
+        {roleId: ADMIN},
+        {where: {id: id}}
+    )
+    .then(function(result) {
+        res.json({
+            success: true,
+            title: "Succès",
+            message: "Droits administrateur ajoutés avec succès"
+        });
+    })
+    .catch(function(result) {
+        res.json({
+            success: true,
+            title: "Erreur",
+            message: "Erreur lors de l'ajout des droits administrateur"
+        });
     })
 }

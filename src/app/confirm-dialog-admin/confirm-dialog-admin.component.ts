@@ -6,6 +6,7 @@ import { UsersService } from '../users.service';
 import { DialogData } from '../dialog-data.model';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 import { Router } from '@angular/router';
+import { ManageAdminComponent } from '../manage-admin/manage-admin.component';
 
 @Component({
   selector: 'app-confirm-dialog-admin',
@@ -21,33 +22,7 @@ export class ConfirmDialogAdminComponent {
     public dialog: MatDialog,
     public router: Router) { }
 
-  confirmRemove(id: number) {
-    let self = this;
-    console.log("plz");
-    this.usersService.removeAdminAcess(id)
-    .subscribe(function(data: DialogData) {
-      console.log("bla");
-      const dialogRef2 = self.dialog.open(AlertDialogComponent, {
-        data
-      })
-      dialogRef2.afterClosed().subscribe(() => self.router.navigate(['/list-admin']));
-    })
-  }
-
-  confirmAdd(id: number) {
-    var self = this;
-    this.closeDialog();
-    this.usersService.addAdminAcess(id)
-    .subscribe(function(data: DialogData) {
-      const dialogRef = self.dialog.open(AlertDialogComponent, {
-        data
-      })
-      dialogRef.afterClosed().subscribe(() => self.router.navigate(['/list-admin']));
-    })
-  }
-
   closeDialog() {
     this.dialogRef.close();
   }
-
 }

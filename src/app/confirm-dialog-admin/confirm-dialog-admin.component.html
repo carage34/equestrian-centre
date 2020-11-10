@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{ data.title }}</h1>
 <p>{{ data.message }} <b>{{ data.firstname }} {{ data.lastname }}</b></p>
 <mat-dialog-actions>
-    <button *ngIf="data.action == 'remove'" mat-raised-button color="primary" mat-dialog-close tabindex="-1" (click)="confirmRemove(data.id)">Ok</button>
-    <button *ngIf="data.action == 'add'" mat-raised-button color="primary" mat-dialog-close tabindex="-1" (click)="confirmAdd(data.id)">Ok</button>
+    <button *ngIf="data.action == 'remove'" mat-raised-button color="primary" mat-dialog-close tabindex="-1" [mat-dialog-close]="'remove'">Ok</button>
+    <button *ngIf="data.action == 'add'" mat-raised-button color="primary" mat-dialog-close tabindex="-1" [mat-dialog-close]="'add'">Ok</button>
     <button mat-raised-button color="primary" mat-dialog-close tabindex="-1" (click)="closeDialog()">Annuler</button>
 </mat-dialog-actions>

@@ -47,7 +47,7 @@ import { ConfirmDialogAdminComponent } from './confirm-dialog-admin/confirm-dial
     MatDialogModule,
     MatTableModule
   ],
-  providers: [AuthGuard, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [AuthGuard, ManageAdminComponent,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
   entryComponents: [AlertDialogComponent]
 })
