@@ -8,25 +8,29 @@
                     <tr>
                         <td>
                             <mat-form-field>
-                                <input matInput name="email"  type="email" placeholder="E-Mail ou Téléphone" [formControl]="form.controls.emailFormControl">
-                                <mat-error *ngIf="form.controls.emailFormControl.hasError('required') || form.controls.emailFormControl.hasError('whitespace')">
+                                <input matInput name="email" type="email" placeholder="E-Mail ou Téléphone"
+                                    [formControl]="form.controls.emailFormControl">
+                                <mat-error
+                                    *ngIf="form.controls.emailFormControl.hasError('required') || form.controls.emailFormControl.hasError('whitespace')">
                                     Le champ email ou téléphone est requis
                                 </mat-error>
-                              </mat-form-field>
+                            </mat-form-field>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <mat-form-field>
-                                <input type="password" name="password"  matInput placeholder="Mot de passe" [formControl]="form.controls.passwordFormControl">
-                                <mat-error *ngIf="form.controls.passwordFormControl.hasError('required') || form.controls.passwordFormControl.hasError('whitespace')">
+                                <input type="password" name="password" matInput placeholder="Mot de passe"
+                                    [formControl]="form.controls.passwordFormControl">
+                                <mat-error
+                                    *ngIf="form.controls.passwordFormControl.hasError('required') || form.controls.passwordFormControl.hasError('whitespace')">
                                     Le champ mot de passe est requis
                                 </mat-error>
                             </mat-form-field>
                         </td>
                     </tr>
                 </table>
-              <button mat-raised-button color="accent" [disabled]="form.invalid" type="submit">Connexion</button>
+                <button mat-raised-button color="accent" [disabled]="form.invalid" type="submit">Connexion</button>
             </form>
         </mat-card>
     </mat-grid-tile>

@@ -12,16 +12,16 @@
           <th></th>
           <th><input type="text" class="form-control" placeholder="Prénom" (keyup)="firstNameFilterChanged()" [(ngModel)]="firstnameFilter"></th>
           <th><input type="text" class="form-control" placeholder="Nom" (keyup)="lastNameFilteredChanged()" [(ngModel)]="lastnameFilter"></th>
-          <th></th>
+          <th><button class="btn btn-primary" (click)="router.navigate(['/add-account'])">Créer un compte</button></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let superAdmin of superAdmins; let i=index;">
           <th scope="row">{{ i }}</th>
-          <td>{{ superAdmin.firstame }}</td>
+          <td>{{ superAdmin.firstname }}</td>
           <td>{{ superAdmin.lastname }}</td>
           <td><button class="btn btn-primary" (click)="popUpAlert(superAdmin.id, superAdmin.firstname, superAdmin.lastname, superAdmin.roleId)"><span *ngIf="superAdmin.roleId == 1">Désactiver</span><span *ngIf="superAdmin.roleId == 3">Activer</span></button></td>
-          <td><button class="btn btn-primary">Consulter</button></td>
+          <td><button class="btn btn-primary" (click)="show(superAdmin.id)">Consulter</button></td>
         </tr>
       </tbody>
     </table>

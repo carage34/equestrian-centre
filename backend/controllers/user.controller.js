@@ -44,27 +44,42 @@ exports.create = (req, res) => {
     })
     
     bcrypt.hash(req.body.password, 10).then(hash => {
+        let role = 3;
+
+        if(!req.body.realSignUp) {
+            role = req.body.role
+        }
+
         const newUser = {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
             telephone: req.body.telephone,
             password: hash,
-            roleId: 3,
+            roleId: role,
             license: req.body.licence
         }
 
         User.create(newUser)
             .then(user => {
-                let token = jwt.sign(user.dataValues, "secret_key", {
-                    expiresIn: 1440
-                })
-                res.json({
-                    token: token,
-                    success: true,
-                    title: "Inscription",
-                    message: "Compte créé avec succès"
-                });
+                if(req.body.realSignUp) {
+                    let token = jwt.sign(user.dataValues, "secret_key", {
+                        expiresIn: 1440
+                    })
+                    res.json({
+                        token: token,
+                        success: true,
+                        title: "Inscription",
+                        message: "Compte créé avec succès"
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        title: "Inscription",
+                        message: "Compte créé avec succès"
+                    });
+                }
+
             })
             .catch(err => {
                 console.log(err);

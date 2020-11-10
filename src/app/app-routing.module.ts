@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component'
 import { AuthGuard } from './auth/auth-guard.service';
 import { ManageAdminComponent } from './manage-admin/manage-admin.component';
 import { DisplayUserComponent } from './display-user/display-user.component';
+import { AddAccountComponent } from './add-account/add-account.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'list-admin', component: ManageAdminComponent},
-  {path: 'show-user/:id', component: DisplayUserComponent}
+  {path: 'show-user/:id', component: DisplayUserComponent},
+  {path: 'add-account', component: AddAccountComponent}
 ];
 
 @NgModule({

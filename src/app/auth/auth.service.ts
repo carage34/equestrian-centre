@@ -77,10 +77,10 @@ export class AuthService {
     }
   }
 
-  createUser(firstname: string, lastname: string, email: string, telephone:string, password: string, licence: string) : Observable<any> {
+  createUser(firstname: string, lastname: string, email: string, telephone:string, password: string, licence: string, realSignUp: boolean, role?: number) : Observable<any> {
     let newLicence = null;
     if(licence) newLicence = licence;
-    const signUpData: UserData = {firstname: firstname, lastname: lastname, email: email, telephone: telephone, password: password, licence: newLicence };
+    const signUpData: UserData = {firstname: firstname, lastname: lastname, email: email, telephone: telephone, password: password, licence: newLicence, role, realSignUp };
     const post = this.http
       .post("http://localhost:8080/api/user", signUpData, {withCredentials: true});
 

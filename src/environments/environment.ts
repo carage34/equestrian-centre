@@ -4,12 +4,19 @@
 
 export const environment = {
   production: false,
-  ADMIN: 1,
-  SUPER_ADMIN: 2,
-  USER: 3,
-  API_BASE: "http://localhost:8080/api"
+  API_BASE: "http://localhost:8080/api",
+  ROLE_LIST: {
+    ADMIN: {id:1, string: "Administrateur"},
+    SUPER_ADMIN: {id:2, string:"Super administrateur"},
+    USER: {id:3, string:"Utilisateur"},
+    MONITOR: {id:4, string:"Monitor"}
+  },
+  ROLE_LIST_ARRAY : {
+    "Administrateur":1,
+    "Utilisateur":3,
+    "Moniteur":4
+  }
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

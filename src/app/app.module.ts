@@ -24,6 +24,9 @@ import { ConfirmDialogAdminComponent } from './confirm-dialog-admin/confirm-dial
 import { DisplayUserComponent } from './display-user/display-user.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { AddAccountComponent } from './add-account/add-account.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { MatSortModule } from '@angular/material/sort';
     AlertDialogComponent,
     ManageAdminComponent,
     ConfirmDialogAdminComponent,
-    DisplayUserComponent
+    DisplayUserComponent,
+    AddAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatOptionModule,
+    MatSelectModule
 
   ],
   providers: [AuthGuard, ManageAdminComponent,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],

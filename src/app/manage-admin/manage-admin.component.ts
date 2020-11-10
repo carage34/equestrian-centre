@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { stringify } from 'querystring';
 import { DialogData } from '../dialog-data.model';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-admin',
@@ -20,13 +21,13 @@ export class ManageAdminComponent implements OnInit {
   displayedColumns: string[] = ['firstname', 'lastname', 'actions'];
   message: string;
   action: string;
-  adminRole = environment.ADMIN;
-  superAdminRole = environment.SUPER_ADMIN;
-  userRole = environment.USER;
+  adminRole = environment.ROLE_LIST.ADMIN.id;
+  superAdminRole = environment.ROLE_LIST.SUPER_ADMIN.id;
+  userRole = environment.ROLE_LIST.USER.id;
   firstnameFilter: string;
   lastnameFilter: string;
 
-  constructor(private authService: AuthService, private usersService: UsersService, public dialog: MatDialog) { }
+  constructor(private authService: AuthService, private usersService: UsersService, public dialog: MatDialog, public router: Router) { }
 
   ngOnInit(): void {
     let self = this;
@@ -135,4 +136,9 @@ export class ManageAdminComponent implements OnInit {
       console.log(self.superAdmins);
     })
   }
+
+  show(id: number) {
+    this.router.navigateByUrl('show-user/'+id);
+  }
+
 }
