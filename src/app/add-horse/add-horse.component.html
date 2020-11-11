@@ -1,1 +1,50 @@
-<p>add-horse works!</p>
+<mat-grid-list cols="5">
+    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2">
+        <mat-card>
+            <form (ngSubmit)="onSubmit(horseForm)" #horseForm="ngForm">
+                <mat-card-title>Ajouter un cheval</mat-card-title>
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput name="name" type="text" placeholder="Nom"
+                                    [formControl]="form.controls.nameFormControl">
+                                <mat-error
+                                    *ngIf="form.controls.nameFormControl.hasError('required') || form.controls.nameFormControl.hasError('whitespace')">
+                                    Le champ nom est requis
+                                </mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input type="text" name="race" matInput placeholder="Race"
+                                    [formControl]="form.controls.raceFormControl">
+                                <mat-error
+                                    *ngIf="form.controls.raceFormControl.hasError('required') || form.controls.raceFormControl.hasError('whitespace')">
+                                    Le champ race est requis
+                                </mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input type="text" name="age" matInput placeholder="Age"
+                                    [formControl]="form.controls.ageFormControl">
+                                <mat-error
+                                    *ngIf="form.controls.ageFormControl.hasError('required') || form.controls.ageFormControl.hasError('whitespace')">
+                                    Le champ Age est requis
+                                </mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+                <button mat-raised-button color="accent" [disabled]="form.invalid" type="submit">Valider</button>
+            </form>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+</mat-grid-list>

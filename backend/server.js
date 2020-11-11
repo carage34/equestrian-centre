@@ -33,7 +33,11 @@ db.sequelize.sync();
 
 user = require("./routes/user.route");
 
+horse = require("./routes/horse.route");
+
 app.use('/api/user', user);
+
+app.use('/api/horse', horse);
 
 app.get("/", function(req, res) {
     res.json("Api status: Ok");

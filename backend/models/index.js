@@ -17,6 +17,7 @@ db.Sequelize = Sequelize;
 
 db.user = require('./user.js')(sequelize, Sequelize);
 db.role = require('./role.js')(sequelize, Sequelize);
+db.horse = require('./horse')(sequelize, Sequelize);
 
 //db.user.hasOne(db.role, {foreignKey: 'id'});
 //db.role.belongsTo(db.user);
