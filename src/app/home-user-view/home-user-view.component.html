@@ -1,0 +1,20 @@
+<mat-card class=custom>
+    <mat-card-header>
+        <div>
+            <mat-card-title>S'incrire à une séance</mat-card-title>
+            <mat-card-subtitle>{{nbSeances}} séances</mat-card-subtitle>
+        </div>
+    </mat-card-header>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let seance of listSeances">
+            <div mat-line>{{seance.name}}</div>
+            <button mat-mini-fab color="primary" class="customBtn2" (click)="getSeanceInfo(seance)">
+                <mat-icon>search</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" class="customBtn2" (click)="registerSeance()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
+  

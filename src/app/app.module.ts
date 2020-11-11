@@ -8,7 +8,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
-
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from "@angular/material/icon"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { AuthGuard } from './auth/auth-guard.service';
+import { HomeUserViewComponent } from './home-user-view/home-user-view.component';
+import { HomeAdminViewComponent } from './home-admin-view/home-admin-view.component';
+import { HomeSuperViewComponent } from './home-super-view/home-super-view.component';
+import { HomeMonoViewComponent } from './home-mono-view/home-mono-view.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,11 @@ import { AuthGuard } from './auth/auth-guard.service';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    HomeUserViewComponent,
+    HomeAdminViewComponent,
+    HomeSuperViewComponent,
+    HomeMonoViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,9 @@ import { AuthGuard } from './auth/auth-guard.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [AuthGuard, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],

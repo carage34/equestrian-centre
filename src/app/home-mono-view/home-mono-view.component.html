@@ -1,0 +1,36 @@
+<mat-card class=custom>
+    <mat-card-header>
+        <mat-card-title>Administration</mat-card-title>
+    </mat-card-header>
+    <mat-list>
+        <mat-list-item class=custom>
+            <div mat-line>Modifier mes informations</div>
+            <button mat-mini-fab color="primary" (click)="editInfo()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
+
+<mat-card class=custom>
+    <mat-card-header>
+        <div>
+            <mat-card-title>Gestion séances</mat-card-title>
+            <mat-card-subtitle>{{nbSeances}} séances</mat-card-subtitle>
+        </div>
+        <div>
+            <button mat-fab color="primary" class="customBtn1" (click)="addSeance()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let seance of listSeances">
+            <div mat-line>{{seance.name}}</div>
+            <button mat-mini-fab color="primary" (click)="getSeanceInfo(seance)">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
+  

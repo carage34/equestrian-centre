@@ -1,0 +1,23 @@
+<mat-card class=custom>
+  <mat-card-header>
+    <div>
+        <mat-card-title>Gestion des comptes administrateurs</mat-card-title>
+        <mat-card-subtitle>{{ nbAdmin }} comptes administrateurs</mat-card-subtitle>
+    </div>
+    <div>
+        <button mat-fab color="primary" class="customBtn1" (click)="onClickAdd()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let admin of listAdmins">
+          <div mat-line>{{admin.name}}</div>
+          <button mat-mini-fab color="accent" (click)="onClickDel(admin)">
+            <mat-icon>delete</mat-icon>
+        </button>
+        </mat-list-item>
+      </mat-list>
+  </mat-card-content>
+</mat-card>

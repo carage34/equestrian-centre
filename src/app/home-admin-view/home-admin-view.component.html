@@ -1,0 +1,52 @@
+<mat-card class=custom>
+    <mat-card-header>
+        <mat-card-title>Administration</mat-card-title>
+    </mat-card-header>
+    <mat-list>
+        <mat-list-item class=custom>
+            <div mat-line>Créer un compte administrateur</div>
+            <button mat-mini-fab color="primary" (click)="addAdmin()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-list-item>
+        <mat-list-item class=custom>
+            <div mat-line>Créer un compte moniteur</div>
+            <button mat-mini-fab color="primary" (click)="addMono()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-list-item>
+        <mat-list-item class=custom>
+            <div mat-line>Modifier mes informations</div>
+            <button mat-mini-fab color="primary" (click)="editInfo()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
+
+<mat-card class=custom>
+    <mat-card-header>
+        <div>
+            <mat-card-title>Gestion chevaux</mat-card-title>
+            <mat-card-subtitle>{{nbHorses}} chevaux</mat-card-subtitle>
+        </div>
+        <div>
+            <button mat-fab color="primary" class="customBtn1" (click)="addHorse()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let horse of listHorses">
+            <div mat-line>{{horse.name}}</div>
+            <button mat-mini-fab color="primary" class="customBtn2" (click)="getHorseInfo(horse)">
+                <mat-icon>search</mat-icon>
+            </button>
+            
+            <button mat-mini-fab color="accent" class="customBtn2" (click)="delHorse(horse)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
+  
