@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { UserData } from "./user-data.model";
 import { AuthData } from './auth-data.model';
 import { Router } from '@angular/router';
+import { UpdateData } from '../update-data.model';
+import {environment} from "../../environments/environment"
 
 export interface UserDetails {
   id: number
@@ -80,7 +82,7 @@ export class AuthService {
   createUser(firstname: string, lastname: string, email: string, telephone:string, password: string, licence: string, realSignUp: boolean, role?: number) : Observable<any> {
     let newLicence = null;
     if(licence) newLicence = licence;
-    const signUpData: UserData = {firstname: firstname, lastname: lastname, email: email, telephone: telephone, password: password, licence: newLicence, role, realSignUp };
+    const signUpData: UserData = {firstname: firstname, lastname: lastname, email: email, telephone: telephone, password: password, licence: newLicence, role, realSignUp, id: null };
     const post = this.http
       .post("http://localhost:8080/api/user", signUpData, {withCredentials: true});
 
@@ -96,6 +98,13 @@ export class AuthService {
       })
     )
     return request;
+  }
+
+  updateProfile(firstname: string, lastname: string, email: string, telephone:string, licence: string, id: number) {
+    let newLicence = null;
+    if(licence) newLicence = licence;
+    const updateData: UpdateData = {firstname: firstname, lastname: lastname, email: email, telephone: telephone, licence: newLicence, id: id };
+    return this.http.post(environment.API_BASE+"/user/update", updateData, {withCredentials: true});
   }
 
   login(email: string, password: string) : Observable<any> {

@@ -187,6 +187,46 @@ exports.getSuperAdmin = (req, res) => {
     })
 }
 
+exports.updateProfile = (req, res) => {
+    User.update(
+        {firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        telephone: req.body.telephone,
+        licence: req.body.licence},
+        {where: {id: req.body.id}}
+    )
+    .then(function(result) {
+        res.json({
+            success: true,
+            title: "Succès",
+            message: "Profil mis à jour"
+        });
+    })
+    .catch(function(result) {
+        console.log(result);
+        res.json({
+            success: true,
+            title: "Erreur",
+            message: "Erreur lors de la mise à jour"
+        });
+    })
+
+}
+
+getIdByEmail = (email) => {
+    User.findOne({
+        where: {
+            email: email
+        }
+    })
+    .then(user => {
+        if(user) {
+            return user.id;
+        }
+    })
+}
+
 exports.removeAdminAccess = (req, res) => {
 
     let id = req.params.id;

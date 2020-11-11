@@ -1,11 +1,8 @@
-export interface UserData {
+export interface UpdateData {
     firstname: string;
     lastname: string;
     email: string;
     telephone: string;
-    password: string;
     licence: string;
-    role: number;
-    realSignUp: boolean;
-    id: number
+    id: number;
 }

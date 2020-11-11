@@ -28,6 +28,7 @@ import { AddAccountComponent } from './add-account/add-account.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AddHorseComponent } from './add-horse/add-horse.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AddHorseComponent } from './add-horse/add-horse.component';
     ConfirmDialogAdminComponent,
     DisplayUserComponent,
     AddAccountComponent,
-    AddHorseComponent
+    AddHorseComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

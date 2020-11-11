@@ -6,6 +6,7 @@ var router = express.Router();
 // Create user
 router.post("/", users.create);
 router.post("/login", users.login);
+router.post("/update", users.updateProfile);
 router.get("/profile", users.info);
 router.get("/getSuperAdmin", users.getSuperAdmin);
 router.get("/removeAdminAccess/:id", users.removeAdminAccess);
