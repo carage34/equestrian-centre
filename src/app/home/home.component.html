@@ -1,6 +1,31 @@
 <h1>Accueil</h1>
 <h1 *ngIf="user">Bonjour {{ user.firstname }}</h1>
-
-    
+<h1>Liste des reprises</h1>
+<mat-grid-list cols="5" rowHeight="200px">
+    <mat-grid-tile *ngFor="let course of courses">
+        <mat-card>
+            <table>
+                <tr>
+                    <td><b>Titre : </b>{{ course.title }}</td>
+                </tr>
+                <tr>
+                    <td><b>Date du cours : </b>{{ course.courseDate | date:'dd/MM/yyyy hh:mm'  }}</td>
+                </tr>
+                <tr>
+                    <td><b>Nombre maximum de cavalier : </b>{{ course.maxUser }}</td>
+                </tr>
+                <tr>
+                    <td><b>Niveau: </b>{{ course.galop }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <button mat-raised-button >S'inscrire </button>
+                        <button mat-raised-button>Attribution de cheval</button>
+                    </td>
+                </tr>
+            </table>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
 
 

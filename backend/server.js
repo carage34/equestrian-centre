@@ -35,9 +35,13 @@ user = require("./routes/user.route");
 
 horse = require("./routes/horse.route");
 
+course = require("./routes/course.route");
+
 app.use('/api/user', user);
 
 app.use('/api/horse', horse);
+
+app.use('/api/course', course);
 
 app.get("/", function(req, res) {
     res.json("Api status: Ok");

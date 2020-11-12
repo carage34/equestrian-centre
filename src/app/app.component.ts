@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { UserData } from './auth/user-data.model';
+import { CourseService } from './course.service';
+import { CourseData } from './course-data.model';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +13,12 @@ import { UserData } from './auth/user-data.model';
 export class AppComponent implements OnInit{
   title = 'equestrian-centre';
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, ) { }
 
   isAuth: boolean;
   subscription: Subscription;
+  
+
   
   ngOnInit(): void {
     this.subscription = this.authService
@@ -24,4 +28,6 @@ export class AppComponent implements OnInit{
     })
     this.isAuth = this.authService.isAuth();
   }
+
+  
 }

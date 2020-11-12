@@ -29,6 +29,10 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AddHorseComponent } from './add-horse/add-horse.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatDatepickerToggle } from '@angular/material/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +46,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     DisplayUserComponent,
     AddAccountComponent,
     AddHorseComponent,
-    EditUserComponent
+    EditUserComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -61,8 +66,10 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     MatPaginatorModule,
     MatSortModule,
     MatOptionModule,
-    MatSelectModule
-
+    MatSelectModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule
   ],
   providers: [AuthGuard, ManageAdminComponent,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],

@@ -10,6 +10,7 @@ import { DisplayUserComponent } from './display-user/display-user.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { AddHorseComponent } from './add-horse/add-horse.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'show-user/:id', component: DisplayUserComponent},
   {path: 'add-account', component: AddAccountComponent},
   {path: 'add-horse', component: AddHorseComponent},
-  {path: 'profile', component: EditUserComponent}
+  {path: 'profile', component: EditUserComponent},
+  {path: 'add-course', component: AddCourseComponent}
 ];
 
 @NgModule({

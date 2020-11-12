@@ -5,7 +5,7 @@ export interface UserData {
     telephone: string;
     password: string;
     licence: string;
-    role: number;
+    roleId: number;
     realSignUp: boolean;
     id: number
 }
