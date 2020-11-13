@@ -33,6 +33,8 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { MatDatepickerToggle } from '@angular/material/datepicker';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { CourseUserComponent } from './course-user/course-user.component';
+import { AssignHorseComponent } from './assign-horse/assign-horse.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
     AddHorseComponent,
     EditUserComponent,
     AddCourseComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    CourseUserComponent,
+    AssignHorseComponent
   ],
   imports: [
     BrowserModule,

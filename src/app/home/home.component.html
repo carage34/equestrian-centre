@@ -20,8 +20,8 @@
                 <tr>
                     <td>
                         <button mat-raised-button *ngIf="!isRegisteredToCourse(course.id)" (click)="addUserToCourse(course.id)">S'inscrire </button>
-                        <button mat-raised-button *ngIf="isRegisteredToCourse(course.id)" (click)="removeUserToCourse(course.id)">Se désinscricre</button>
-                        <button mat-raised-button>Attribution de cheval</button>
+                        <button mat-raised-button *ngIf="isRegisteredToCourse(course.id)" (click)="removeUserToCourse(course.id)">Se désinscrire</button>
+                        <button mat-raised-button (click)="listRegister(course.id)">Attribution de cheval</button>
                         <button mat-raised-button (click)="editCourse(course.id)">Modifier</button>
                     </td>
                 </tr>

@@ -11,7 +11,7 @@ export class HorseService {
   constructor(private http: HttpClient) { }
 
   add(name: string, race: string, age: number) {
-    const horseData: HorseData = {name: name, race: race, age: age };
+    const horseData: HorseData = {name: name, race: race, age: age, id: null };
     console.log("plz");
     console.log(horseData);
     return this.http.post(environment.API_BASE + "/horse/add", horseData, {withCredentials: true});

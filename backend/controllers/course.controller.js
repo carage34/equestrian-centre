@@ -2,8 +2,12 @@ const db = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
+const horse = require("../models/horse");
 const Course = db.course;
 const UserCourse = db.userCourse;
+const User = db.user;
+const UserCourseHorse = db.userCourseHorse
+const Horse = db.horse;
 
 exports.add = (req, res) => {
     console.log("data");
@@ -53,6 +57,7 @@ exports.getOne = (req, res) => {
         }
     })
     .then(course => {
+        console.log(course);
         res.json(course);
     })
     .catch(err => {
@@ -128,7 +133,7 @@ exports.removeUserCourse = (req, res) => {
     })
     .then(result => {
         res.json({
-            sucess:true,
+            success:true,
             title:"Désinscription au cours",
             message:"Vous avez bien été desinscris de ce cours"
         })
@@ -136,10 +141,48 @@ exports.removeUserCourse = (req, res) => {
     .catch(err => {
         console.log(err);
         res.json({
-            sucess:false,
+            success:false,
             title:"Désinscription au cours",
             message:"Erreur avec la base de données"
         })
+    })
+}
+
+exports.getUserByIds = (ids) => {
+
+}
+
+exports.getAllUserCourse = (req, res) => {
+    let idCourse = req.params.idCourse;
+    idArr = [];
+    UserCourse.findAll({
+        attributes: ['idUser'],
+        where: {
+            idCourse: idCourse
+        }
+    }).then(userCourse => {
+        for(let [key, value] of Object.entries(userCourse)) {
+            //console.log(value.dataValues);
+            idArr.push(value.dataValues.idUser);
+        }
+        User.findAll({
+            where: {
+                id: {
+                    [Op.in]: idArr
+                }
+            }
+        }).then(users => {
+            console.log(users);
+            res.json(users);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        
+    })
+    .catch(err => {
+        console.log(err);
+
     })
 }
 
@@ -172,5 +215,109 @@ exports.isRegistered = (req, res) => {
     })
     .catch(error => {
         console.log(error)
+    })
+}
+
+exports.assignHorse = (req, res) => {
+    idUser = req.params.idUser;
+    idCourse = req.params.idCourse;
+    idHorse = req.params.idHorse;
+
+    newAssignHorse = {
+        idUser: idUser,
+        idCourse: idCourse,
+        idHorse:  idHorse
+    }
+
+    UserCourseHorse.create(newAssignHorse)
+    .then(newAssignHorse => {
+        res.json({
+            success:true,
+            title:"Assignation",
+            message:"Le cheval a été assigné avec succès"
+        })
+    })
+    .catch(err => {
+        res.json({
+            success:false,
+            title:"Assignation",
+            message:"Erreur lors de l'assignation"
+        })
+    })
+}
+
+exports.getAvailableHorses = (req, res) => {
+    idCourse = req.params.idCourse;
+    horseId = [];
+    // get all horse id already taken
+    UserCourseHorse.findAll({
+        attributes: ['idHorse'],
+        where: {
+            idCourse: idCourse
+        }
+    })
+    .then(userCourseHorse => {
+        for(let [key, value] of Object.entries(userCourseHorse)) {
+            console.log(value.dataValues);
+            horseId.push(value.dataValues.idHorse);
+        }
+        console.log("id values");
+        console.log(horseId);
+
+        Horse.findAll({
+            where: {
+                id: {
+                    [Op.notIn]: horseId
+                }
+            }
+        })
+        .then(horses => {
+            res.json(horses);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+exports.getUserRegisteredCourse = (req, res) => {
+    let courseId = req.params.courseId;
+    userId = [];
+
+    UserCourse.findAll({
+        attributes: ["idUser"],
+        where: {
+            idCourse: courseId
+        }
+    })
+    .then(userCourse => {
+        for(let [key, value] of Object.entries(userCourse)) {
+            console.log(value.dataValues);
+            userId.push(value.dataValues.idUser);
+        }
+        console.log("testtest");
+        console.log(userId);
+
+        User.findAll({
+            where: {
+                id: {
+                    [Op.in]: userId
+                }
+            }
+        })
+        .then(users => {
+            console.log(users);
+            res.send(users);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(error => {
+        console.log(error);
     })
 }

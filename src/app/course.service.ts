@@ -21,13 +21,11 @@ export class CourseService {
   }
 
   get(id:number) {
-    console.log("plz");
     return this.http.get(environment.API_BASE + "/course/get/"+id);
   }
 
   update(title, courseDate, maxUser, galop, id) {
     const courseData = {title:title, courseDate:courseDate, maxUser:maxUser, galop:galop, id: id};
-    console.log("plz");
     console.log(courseData);
     return this.http.post(environment.API_BASE + "/course/edit", courseData, {withCredentials: true});
   }
@@ -42,5 +40,21 @@ export class CourseService {
 
   isUserRegistered(idUser: number) {
     return this.http.get(environment.API_BASE + "/course/isRegistered/"+idUser+"/"+0);
+  }
+
+  getAllUserCourse(idCourse: number) {
+    return this.http.get(environment.API_BASE + "/course/getUserCourse/" + idCourse);
+  }
+
+  assignHorse(userId: number, courseId: number, horseId: number) {
+    return this.http.get(environment.API_BASE + "/course/assignHorse/"+userId+"/"+courseId+"/"+horseId);
+  }
+
+  getAllUsersForCourse(courseId: number) {
+    return this.http.get(environment.API_BASE + "/course/getUserRegistered/" + courseId);
+  }
+
+  getAllHorsesAvalaible(courseId: number) {
+    return this.http.get(environment.API_BASE + "/course/getAvailableHorse/" + courseId);
   }
 }

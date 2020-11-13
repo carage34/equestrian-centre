@@ -99,4 +99,8 @@ export class HomeComponent implements OnInit {
       console.log(courses)
     })
   }
+
+  listRegister(id: number) {
+    this.router.navigateByUrl("course-user/"+id);
+  }
 }

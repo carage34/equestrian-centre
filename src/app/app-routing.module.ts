@@ -12,6 +12,8 @@ import { AddHorseComponent } from './add-horse/add-horse.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
+import { CourseUserComponent } from './course-user/course-user.component';
+import { AssignHorseComponent } from './assign-horse/assign-horse.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -24,7 +26,9 @@ const routes: Routes = [
   {path: 'add-horse', component: AddHorseComponent},
   {path: 'profile', component: EditUserComponent},
   {path: 'add-course', component: AddCourseComponent},
-  {path: 'edit-course/:id', component: EditCourseComponent}
+  {path: 'edit-course/:id', component: EditCourseComponent},
+  {path: 'course-user/:id', component: CourseUserComponent},
+  {path: 'assign-horse/:courseId/:userId', component: AssignHorseComponent}
 ];
 
 @NgModule({
