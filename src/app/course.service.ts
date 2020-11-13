@@ -31,4 +31,16 @@ export class CourseService {
     console.log(courseData);
     return this.http.post(environment.API_BASE + "/course/edit", courseData, {withCredentials: true});
   }
+
+  addUserToCourse(idUser: number, idCourse: number) {
+    return this.http.get(environment.API_BASE + "/course/addUserCourse/"+idUser+"/"+idCourse);
+  }
+
+  removeUserToCourse(idUser: number, idCourse: number) {
+    return this.http.get(environment.API_BASE + "/course/removeUserCourse/"+idUser+"/"+idCourse);
+  }
+
+  isUserRegistered(idUser: number) {
+    return this.http.get(environment.API_BASE + "/course/isRegistered/"+idUser+"/"+0);
+  }
 }

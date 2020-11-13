@@ -6,6 +6,10 @@ import { Subscription } from 'rxjs';
 import { CourseData } from '../course-data.model';
 import { CourseService } from '../course.service';
 import { Router } from '@angular/router';
+import { DialogData } from '../dialog-data.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { UserCourse } from '../user-course-data.model';
 
 @Component({
   selector: 'app-home',
@@ -17,28 +21,82 @@ export class HomeComponent implements OnInit {
   user: UserDetails;
   isAuth: boolean;
   courses: CourseData[];
+  public registeredCourse: UserCourse[];
 
-  constructor(private http: HttpClient, private authService: AuthService, public courseService: CourseService, public router: Router) { }
+  constructor(private http: HttpClient,
+    private authService: AuthService,
+    public courseService: CourseService,
+    public router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     //this.isAuthenticated = this.authService.isAuth();
     this.authService
-    .profile()
-    .subscribe(
-      user => {
-        this.user = user;
-      }
-    )
-
-    let self = this;
+      .profile()
+      .subscribe(
+        user => {
+          this.user = user;
+          this.getUserRegisteredCourse(this.user.id);
+        }
+      )
 
     this.courseService.getAll()
-    .subscribe((courses: CourseData[]) => {
-      this.courses = courses;
-    })
+      .subscribe((courses: CourseData[]) => {
+        this.courses = courses;
+      })
+
+      
   }
 
   editCourse(id: number) {
-    this.router.navigateByUrl('edit-course/'+id);
+    this.router.navigateByUrl('edit-course/' + id);
+  }
+
+  addUserToCourse(idCourse: number) {
+    this.courseService.addUserToCourse(this.user.id, idCourse)
+      .subscribe((data: DialogData) => {
+        const dialogRef = this.dialog.open(AlertDialogComponent, {
+          data
+        })
+        this.getUserRegisteredCourse(this.user.id);
+    })
+    
+  }
+
+  removeUserToCourse(idCourse: number) {
+    this.courseService.removeUserToCourse(this.user.id, idCourse)
+      .subscribe((data: DialogData) => {
+        const dialogRef = this.dialog.open(AlertDialogComponent, {
+          data
+        })
+        this.getUserRegisteredCourse(this.user.id);
+    })
+  }
+
+  getUserRegisteredCourse(idUser: number) {
+    this.courseService.isUserRegistered(idUser)
+      .subscribe((data: UserCourse[]) => {
+        this.registeredCourse = data;
+    })
+  }
+
+  isRegisteredToCourse(idCourse:number) {
+    let i=0;
+    let array = this.registeredCourse["userCourse"];
+    let res = array.find(course => course.idCourse === idCourse);
+    console.log("res");
+    if(res) {
+      return true
+    } else {
+      return false;
+    }    
+  }
+
+  reloadData() {
+    this.courseService.getAll()
+    .subscribe((courses: CourseData[]) => {
+      this.courses = courses;
+      console.log(courses)
+    })
   }
 }
