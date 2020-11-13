@@ -34,6 +34,7 @@ ___
 ![Page d'accueil Cavalier](/img/home-user.png)
 ___
 
+Compte super admin : login aaa@aaa mot de passe : aaa
 
 ## Angular
 
