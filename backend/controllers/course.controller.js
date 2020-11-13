@@ -273,7 +273,13 @@ exports.getAvailableHorses = (req, res) => {
             }
         })
         .then(horses => {
+            console.log(horses);
             res.json(horses);
+            if(horses.length === 0) {
+                console.log("empty");
+            } else {
+                console.log("pas empty");
+            }
         })
         .catch(err => {
             console.log(err);

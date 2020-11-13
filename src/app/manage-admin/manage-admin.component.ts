@@ -5,11 +5,11 @@ import { UserData } from '../auth/user-data.model';
 import { UsersService } from '../users.service';
 import {DialogConfirmAdmin} from '../dialog-confirm-admin-data';
 import { ConfirmDialogAdminComponent } from '../confirm-dialog-admin/confirm-dialog-admin.component';
-import { environment } from 'src/environments/environment';
 import { stringify } from 'querystring';
 import { DialogData } from '../dialog-data.model';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-manage-admin',
@@ -26,6 +26,8 @@ export class ManageAdminComponent implements OnInit {
   userRole = environment.ROLE_LIST.USER.id;
   firstnameFilter: string;
   lastnameFilter: string;
+  user: UserData;
+  roleList = environment.ROLE_LIST;
 
   constructor(private authService: AuthService, private usersService: UsersService, public dialog: MatDialog, public router: Router) { }
 
@@ -41,6 +43,18 @@ export class ManageAdminComponent implements OnInit {
       self.superAdmins = user;
       console.log(self.superAdmins);
     })
+
+    this.authService
+    .profile()
+    .subscribe(
+      user => {
+        this.user = user;
+        console.log(user.roleId);
+        if(this.user.roleId != +this.roleList.ADMIN.id && this.user.roleId != +this.roleList.SUPER_ADMIN.id) {
+          this.router.navigateByUrl('/login');
+        }
+      }
+    )
   }
 
   firstNameFilterChanged() {

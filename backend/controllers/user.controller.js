@@ -143,7 +143,11 @@ exports.login = (req, res) => {
 
 exports.info = (req, res) => {
     console.log(req.headers);
-    var decoded = jwt.verify(req.headers['authorization'], 'secret_key');
+    try {
+        var decoded = jwt.verify(req.headers['authorization'], 'secret_key');
+    } catch(e) {
+        console.log(e);
+    }
 
     User.findOne({
         where: {

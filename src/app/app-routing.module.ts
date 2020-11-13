@@ -20,15 +20,15 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'signup', component: SignupComponent},
-  {path: 'list-admin', component: ManageAdminComponent},
-  {path: 'show-user/:id', component: DisplayUserComponent},
-  {path: 'add-account', component: AddAccountComponent},
-  {path: 'add-horse', component: AddHorseComponent},
-  {path: 'profile', component: EditUserComponent},
-  {path: 'add-course', component: AddCourseComponent},
-  {path: 'edit-course/:id', component: EditCourseComponent},
-  {path: 'course-user/:id', component: CourseUserComponent},
-  {path: 'assign-horse/:courseId/:userId', component: AssignHorseComponent}
+  {path: 'list-admin', component: ManageAdminComponent, canActivate: [AuthGuard]},
+  {path: 'show-user/:id', component: DisplayUserComponent, canActivate: [AuthGuard]},
+  {path: 'add-account', component: AddAccountComponent, canActivate: [AuthGuard]},
+  {path: 'add-horse', component: AddHorseComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: EditUserComponent, canActivate: [AuthGuard]},
+  {path: 'add-course', component: AddCourseComponent, canActivate: [AuthGuard]},
+  {path: 'edit-course/:id', component: EditCourseComponent, canActivate: [AuthGuard]},
+  {path: 'course-user/:id', component: CourseUserComponent, canActivate: [AuthGuard]},
+  {path: 'assign-horse/:courseId/:userId', component: AssignHorseComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

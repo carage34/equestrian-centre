@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 import { UserData } from '../auth/user-data.model';
 import { CourseData } from '../course-data.model';
 import { CourseService } from '../course.service';
@@ -18,7 +19,8 @@ export class CourseUserComponent implements OnInit {
   users: UserData[];
   assignHorse: UserCourseHorse[];
   horses: HorseData[];
-  constructor(public courseService: CourseService, public router: Router, public route: ActivatedRoute, public horseService: HorseService) { }
+  user: UserData[];
+  constructor(public courseService: CourseService, public router: Router, public route: ActivatedRoute, public horseService: HorseService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get("id");
@@ -41,6 +43,14 @@ export class CourseUserComponent implements OnInit {
       this.horses = horses;
       console.log(horses);
     })
+
+    this.authService
+    .profile()
+    .subscribe(
+      user => {
+        this.user = user;
+      }
+    )
   }
 
   getAssignedHorse(userId: number) {

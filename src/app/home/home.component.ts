@@ -10,6 +10,7 @@ import { DialogData } from '../dialog-data.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 import { UserCourse } from '../user-course-data.model';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +19,11 @@ import { UserCourse } from '../user-course-data.model';
 })
 export class HomeComponent implements OnInit {
 
-  user: UserDetails;
+  user: UserData;
   isAuth: boolean;
   courses: CourseData[];
   public registeredCourse: UserCourse[];
+  roleList = environment.ROLE_LIST;
 
   constructor(private http: HttpClient,
     private authService: AuthService,

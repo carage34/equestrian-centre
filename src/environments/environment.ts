@@ -14,7 +14,7 @@ export const environment = {
   ROLE_LIST_ARRAY : {
     "Administrateur":1,
     "Utilisateur":3,
-    "Moniteur":4
+    "Moniteur":4,
   }
 };
 /*

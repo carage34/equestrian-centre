@@ -15,7 +15,7 @@
           <th scope="row">{{ i }}</th>
           <td>{{ user.firstname }}</td>
           <td>{{ user.lastname }}</td>
-          <td> <span *ngIf="!getAssignedHorse(user.id)"><span>Aucun cheval assigné </span><button mat-raised-button  (click)="assign(user.id)">Assigner un cheval</button></span>
+          <td *ngIf="user.roleId!=3"> <span *ngIf="!getAssignedHorse(user.id)"><span>Aucun cheval assigné </span><button mat-raised-button  (click)="assign(user.id)">Assigner un cheval</button></span>
             <span *ngIf="getAssignedHorse(user.id)">{{ getAssignedHorse(user.id) }}</span>
         </td>
           <td></td>
