@@ -21,15 +21,14 @@
                         
                         <td>
 
-                            <mat-form-field>
-                                <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
-                                [formControl]="form.controls.courseDateFormControl" [min]="minDate" [max]="maxDate" [disabled]="disabled">
-                                <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners"
-                                    [showSeconds]="showSeconds" [stepHour]="stepHour" [stepMinute]="stepMinute"
-                                    [stepSecond]="stepSecond" [touchUi]="touchUi" [color]="color"
-                                    [enableMeridian]="enableMeridian">
+                            <mat-form-field appearance="outline" class="center">
+                                <input matInput (click)="picker.open()" [ngxMatDatetimePicker]="picker" placeholder="Choisissez un jour et une heure" [formControl]="form.controls.courseDateFormControl" [min]="minDate" [max]="maxDate" [disabled]="disabled" required>
+                                <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                                                         [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
+                                                         [touchUi]="touchUi" [color]="color" [enableMeridian]="enableMeridian"
+                                                        >
                                 </ngx-mat-datetime-picker>
-                            </mat-form-field>
+                              </mat-form-field>
                         </td>
                         <td>
                             <ngx-mat-timepicker 

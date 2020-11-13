@@ -35,7 +35,7 @@ export class EditCourseComponent implements OnInit {
 
   form = new FormGroup({
     titleFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
-    courseDateFormControl: new FormControl(new Date("")),
+    courseDateFormControl: new FormControl(''),
     maxUserFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     galopFormControl: new FormControl('', [Validators.required]),
   })
