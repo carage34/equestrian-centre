@@ -22,12 +22,21 @@
 -   [x] 8. User Story reprise récurrente
 ## Fonctionnalités *front-end* seulement
 - Page d'accueil SuperUser
-- Page d'accueil Administration
-- Page d'accueil Moniteur
-- Page d'accueil Cavalier
-
-
+![Page d'accueil SuperUser](/img/home-super.png)
 ___
+- Page d'accueil Administration
+![Page d'accueil Administration](/img/home-admin.png)
+___
+- Page d'accueil Moniteur
+![Page d'accueil Moniteur](/img/home-mono.png)
+___
+- Page d'accueil Cavalier
+![Page d'accueil Cavalier](/img/home-user.png)
+___
+
+
+## Angular
+
 ### EquestrianCentre
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
