@@ -3,4 +3,5 @@ export interface CourseData {
     courseDate: Date;
     maxUser: number;
     galop: number
+    id: number;
 }

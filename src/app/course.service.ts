@@ -10,7 +10,7 @@ export class CourseService {
   constructor(private http: HttpClient) { }
 
   add(title: string, courseDate: Date, maxUser: number,  galop: number) {
-    const courseData = {title:title, courseDate:courseDate, maxUser:maxUser, galop:galop};
+    const courseData = {title:title, courseDate:courseDate, maxUser:maxUser, galop:galop, id: null};
     console.log("plz");
     console.log(courseData);
     return this.http.post(environment.API_BASE + "/course/add", courseData, {withCredentials: true});
@@ -18,5 +18,17 @@ export class CourseService {
 
   getAll() {
     return this.http.get(environment.API_BASE + "/course/all");
+  }
+
+  get(id:number) {
+    console.log("plz");
+    return this.http.get(environment.API_BASE + "/course/get/"+id);
+  }
+
+  update(title, courseDate, maxUser, galop, id) {
+    const courseData = {title:title, courseDate:courseDate, maxUser:maxUser, galop:galop, id: id};
+    console.log("plz");
+    console.log(courseData);
+    return this.http.post(environment.API_BASE + "/course/edit", courseData, {withCredentials: true});
   }
 }

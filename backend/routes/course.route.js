@@ -6,5 +6,7 @@ var router = express.Router();
 
 router.post("/add", courses.add);
 router.get("/all", courses.getAllCourses);
+router.get("/get/:id", courses.getOne);
+router.post("/edit", courses.edit);
 
 module.exports = router

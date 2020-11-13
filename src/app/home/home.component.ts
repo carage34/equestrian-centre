@@ -5,6 +5,7 @@ import { UserData } from '../auth/user-data.model';
 import { Subscription } from 'rxjs';
 import { CourseData } from '../course-data.model';
 import { CourseService } from '../course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   isAuth: boolean;
   courses: CourseData[];
 
-  constructor(private http: HttpClient, private authService: AuthService, public courseService: CourseService) { }
+  constructor(private http: HttpClient, private authService: AuthService, public courseService: CourseService, public router: Router) { }
 
   ngOnInit(): void {
     //this.isAuthenticated = this.authService.isAuth();
@@ -37,5 +38,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-
+  editCourse(id: number) {
+    this.router.navigateByUrl('edit-course/'+id);
+  }
 }

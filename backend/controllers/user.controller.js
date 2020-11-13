@@ -124,6 +124,12 @@ exports.login = (req, res) => {
                     message: "Authentification réussi",
                 }
             )
+        } else {
+            res.send({
+                success: false,
+                title: "Authentification",
+                message: "Le mot de passe est incorrect"
+            })
         }
     })
     .catch(err => {
