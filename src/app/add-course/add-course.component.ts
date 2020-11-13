@@ -32,7 +32,7 @@ export class AddCourseComponent implements OnInit {
 
   form = new FormGroup({
     titleFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
-    courseDateFormControl: new FormControl(new Date("")),
+    courseDateFormControl: new FormControl(Date.now),
     maxUserFormControl: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     galopFormControl: new FormControl('', [Validators.required]),
   })
