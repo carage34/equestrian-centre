@@ -30,3 +30,13 @@ exports.add = (req, res) => {
             })
         })
 }
+
+exports.getAllHorses = (req, res) => {
+    Horse.findAll()
+    .then(horses => {
+        res.json(horses);
+    })
+    .catch(err => {
+        console.log(err);
+    })  
+}

@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
 const horse = require("../models/horse");
+const userCourseHorse = require("../models/userCourseHorse");
 const Course = db.course;
 const UserCourse = db.userCourse;
 const User = db.user;
@@ -319,5 +320,17 @@ exports.getUserRegisteredCourse = (req, res) => {
     })
     .catch(error => {
         console.log(error);
+    })
+}
+
+exports.getAllHorsesUsers = (req, res) => {
+    let courseId = req.params.courseId;
+    UserCourseHorse.findAll({
+        where: {
+            idCourse: courseId
+        }
+    })
+    .then(userCourseHorse => {
+        res.json(userCourseHorse);
     })
 }

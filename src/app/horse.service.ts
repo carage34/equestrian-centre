@@ -16,4 +16,8 @@ export class HorseService {
     console.log(horseData);
     return this.http.post(environment.API_BASE + "/horse/add", horseData, {withCredentials: true});
   }
+
+  getAll() {
+    return this.http.get(environment.API_BASE + "/horse/all");
+  }
 }

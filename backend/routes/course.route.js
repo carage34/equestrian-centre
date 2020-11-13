@@ -16,5 +16,6 @@ router.get("/getUserCourse/:idCourse", courses.getAllUserCourse);
 router.get("/assignHorse/:idUser/:idCourse/:idHorse", courses.assignHorse);
 router.get("/getAvailableHorse/:idCourse", courses.getAvailableHorses)
 router.get("/getUserRegistered/:courseId", courses.getUserRegisteredCourse);
+router.get("/getAllHorsesUsers/:courseId", courses.getAllHorsesUsers);
 
 module.exports = router

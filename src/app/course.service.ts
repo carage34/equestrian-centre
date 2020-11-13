@@ -57,4 +57,8 @@ export class CourseService {
   getAllHorsesAvalaible(courseId: number) {
     return this.http.get(environment.API_BASE + "/course/getAvailableHorse/" + courseId);
   }
+
+  getAllHorseUser(courseId: number) {
+    return this.http.get(environment.API_BASE + "/course/getAllHorsesUsers/" + courseId);
+  }
 }

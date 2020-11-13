@@ -77,6 +77,8 @@ export class HomeComponent implements OnInit {
     this.courseService.isUserRegistered(idUser)
       .subscribe((data: UserCourse[]) => {
         this.registeredCourse = data;
+        console.log("stp");
+        console.log(this.registeredCourse);
     })
   }
 
